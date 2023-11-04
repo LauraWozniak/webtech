@@ -16,5 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+      - name: Make gradlew executable
+          run: chmod +x gradlew
       - name: Clean build
         run: ./gradlew clean build --info --stacktrace
