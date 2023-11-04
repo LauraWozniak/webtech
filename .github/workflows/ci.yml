@@ -17,6 +17,6 @@ jobs:
         with:
           node-version: 16
       - name: Make gradlew executable
-          run: chmod +x gradlew
+        run: chmod +x gradlew
       - name: Clean build
         run: ./gradlew clean build --info --stacktrace
