@@ -1,4 +1,4 @@
-package com.example.demo.springboot;
+package com.example.demo.springboot.web;
 import java.util.Arrays;
 
 import org.springframework.boot.SpringApplication;
