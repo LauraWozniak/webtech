@@ -1,11 +1,8 @@
 package com.example.demo.springboot.web.api;
 
-import jakarta
+import jakarta.persistence.*;
 
 public class Erinnerung {
-
-
-    @Id
 
     private long id;
     private String text;
