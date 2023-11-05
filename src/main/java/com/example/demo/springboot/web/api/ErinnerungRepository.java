@@ -1,4 +1,6 @@
 package com.example.demo.springboot.web.api;
 
-public class ErinnerungRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface ErinnerungRepository extends CrudRepository<Erinnerung,Long> {
 }

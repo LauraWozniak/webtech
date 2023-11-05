@@ -2,11 +2,17 @@ package com.example.demo.springboot.web.api;
 
 import jakarta.persistence.*;
 
+
+@Entity
 public class Erinnerung {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String text;
 
+    public Erinnerung() {
+    }
     public Erinnerung(long id, String text){
         this.id = id;
         this.text = text;

@@ -1,26 +1,24 @@
 package com.example.demo.springboot.web.api;
 
-import com.example.demo.springboot.web.api.Erinnerung;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ErinnerungRestController {
 
-    private List <Erinnerung> erinnerungs;
 
-    public ErinnerungRestController(){
-        erinnerungs = new ArrayList<>();
-        erinnerungs.add(new Erinnerung(1,"Hausaufgabe"));
-        erinnerungs.add(new Erinnerung(2,"Arbeitsblatt"));
+    @Autowired
+    ErinnerungService service;
+
+
+    @PostMapping(path = "/erinnerungs")
+    public Erinnerung createErinnerung(@RequestBody Erinnerung erinnerung){
+        return service.save(erinnerung);
     }
-
-    @GetMapping(path = "/api/v1/erinnerungen")
-    public List<Erinnerung> fetchErinnerungen(){
-        return erinnerungs;
+    @GetMapping(path = "/erinnerungs/{id}")
+    public Erinnerung getErinnerung(@PathVariable String id){
+        Long erinnerungId = Long.parseLong(id);
+        return service.get(erinnerungId);
 
     }
 }
