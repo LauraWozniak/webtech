@@ -1,14 +1,17 @@
-package com.example.demo.springboot.web.api;
+package com.example.demo.springboot.web.api.web.api;
 
 import jakarta.persistence.*;
 
 
-@Entity
+@Entity(name = "erinnerung")
 public class Erinnerung {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private long id;
+
+    @Column (name = "Erinnerung", nullable = false)
     private String text;
 
     public Erinnerung() {
@@ -22,9 +25,6 @@ public class Erinnerung {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getText() {
         return text;
