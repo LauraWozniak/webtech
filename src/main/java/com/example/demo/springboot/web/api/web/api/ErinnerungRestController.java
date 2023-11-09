@@ -17,18 +17,13 @@ public class ErinnerungRestController {
     ErinnerungService service;
 
 
-    private List<Erinnerung> erinnerung;
 
     public ErinnerungRestController() {
-        erinnerung = new ArrayList<>();
-        erinnerung.add(new Erinnerung(1, "hausaufgaben"));
-        erinnerung.add(new Erinnerung(2, "Abgaben"));
 
     }
     @GetMapping(path = "/api/v1/erinnerungen")
     public List<Erinnerung> fetchErinnerungen(){
-        return erinnerung;
-
+        return service.getAll();
     }
     @PostMapping("/api/v1/erinnerungen")
     public Erinnerung create(@RequestBody Erinnerung erinnerung) {
