@@ -9,6 +9,6 @@ import java.util.List;
 
 
 @Repository
-public interface ErinnerungRepository extends JpaRepository<ErinnerungEntity,Long> {
+public interface ErinnerungRepository extends CrudRepository<ErinnerungEntity,Long> {
     List<ErinnerungEntity> findAllByText(String text);
 }

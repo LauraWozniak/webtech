@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.springboot.web.api.web.api.ErinnerungRestController;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,13 +20,21 @@ public class ErinnerungService {
     public ErinnerungService(ErinnerungRepository erinnerungRepository) {
         this.erinnerungRepository = erinnerungRepository;
     }
-
-    public List<Erinnerung> findAll() {
-        List<ErinnerungEntity> erinnerung = erinnerungRepository.findAll();
-        return erinnerung.stream()
-                .map(this::transformEntity)
-                .collect(Collectors.toList());
+    public Erinnerung save(Erinnerung erinnerung) {
+        ErinnerungEntity erinnerungEntity = new ErinnerungEntity(erinnerung.getText());
+        erinnerungEntity = erinnerungRepository.save(erinnerungEntity);
+        return transformEntity(erinnerungEntity);
     }
+
+    public List<Erinnerung> getAll() {
+        Iterable<ErinnerungEntity> iterator = erinnerungRepository.findAll();
+        List<Erinnerung> erinnerungs = new ArrayList<>();
+        for (ErinnerungEntity erinnerungEntity : iterator) {
+            erinnerungs.add(transformEntity(erinnerungEntity));
+        }
+        return erinnerungs;
+    }
+
 
     public Erinnerung findById(Long id) {
         var erinnerungEntity = erinnerungRepository.findById(id);
@@ -55,6 +64,7 @@ public class ErinnerungService {
                 erinnerungEntity.getText()
         );
     }
+
     public boolean deleteById(Long id) {
         if (!erinnerungRepository.existsById(id)) {
             return false;

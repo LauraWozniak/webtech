@@ -1,6 +1,7 @@
 package com.example.demo.springboot.web.api.web.api;
 
 import com.example.demo.springboot.web.api.service.ErinnerungService;
+import com.example.demo.springboot.web.api.web.ErinnerungmanipulationRequest;
 import com.example.demo.springboot.web.api.web.api.Erinnerung;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,4 +30,12 @@ public class ErinnerungRestController {
         return erinnerung;
 
     }
+    @PostMapping("/api/v1/erinnerungen")
+    public Erinnerung create(@RequestBody Erinnerung erinnerung) {
+        return service.save(erinnerung);
+    }
+
+
+
+
 }
