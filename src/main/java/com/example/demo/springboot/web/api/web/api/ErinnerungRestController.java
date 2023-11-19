@@ -30,7 +30,7 @@ public class ErinnerungRestController {
         return service.save(erinnerung);
     }
 
-
+    //todo das aber nochmal für create und delete mapping
 
 
 }
