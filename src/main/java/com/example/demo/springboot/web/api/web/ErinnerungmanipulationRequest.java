@@ -3,6 +3,9 @@ package com.example.demo.springboot.web.api.web;
 public class ErinnerungmanipulationRequest {
     private String text;
 
+    public ErinnerungmanipulationRequest(){
+    }
+
     public ErinnerungmanipulationRequest(String text) {
             this.text = text;
     }
