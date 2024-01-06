@@ -4,6 +4,8 @@ import com.example.demo.springboot.web.api.service.ErinnerungService;
 import com.example.demo.springboot.web.api.web.ErinnerungmanipulationRequest;
 import com.example.demo.springboot.web.api.web.api.Erinnerung;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 
@@ -18,7 +20,9 @@ public class ErinnerungRestController {
     @Autowired
     ErinnerungService service;
 
-
+    public ErinnerungRestController(ErinnerungService service) {
+        this.service = service;
+    }
 
     public ErinnerungRestController() {
 
@@ -32,7 +36,17 @@ public class ErinnerungRestController {
         return service.save(erinnerung);
     }
 
-    //todo das aber nochmal für create und delete mapping
+    @DeleteMapping("/api/v1/erinnerungen/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        if (service.deleteById(id)) {
+            return new ResponseEntity<>("Erinnerung gelöscht", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("[Fehler] Erinnerung konnte nicht gelöscht werden", HttpStatus.NOT_FOUND);
+        }
+    }
+    // TODO: update erinnerung (vlt)
+
+
 
 
 }
